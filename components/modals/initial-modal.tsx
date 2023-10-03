@@ -36,6 +36,11 @@ const formSchema = z.object({
 });
 
 const InitialMaodal = () => {
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
     
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -50,6 +55,9 @@ const InitialMaodal = () => {
         console.log(values);
     }
 
+    if (!isMounted) {
+        return null;
+    }
 
     return ( 
         <Dialog open>
