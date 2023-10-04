@@ -16,6 +16,9 @@
     # See the documentation for all the connection string options: https://pris.ly/d/connection-strings
 
     DATABASE_URL='mysql://****************************************************************'
+    UPLOADTHING_SECRET=sk_live_••••••••••••••••••••••••••••••••••••••••••
+    UPLOADTHING_APP_ID=•••••••••••••••••
+    
 ```
 ## 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
