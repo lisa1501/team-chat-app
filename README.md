@@ -1,4 +1,4 @@
-- Create a .env file in server. It should contain the following information.
+- Create a .env file in current the directory. It should contain the following information.
 ```bash
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_************
     CLERK_SECRET_KEY=sk_test_*******************
