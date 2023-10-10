@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import {
     Dialog,
     DialogContent,
@@ -16,7 +17,7 @@ import { useOrigin } from "@/hooks/use-origin";
 import { useState } from "react";
 
 const InviteModal = () => {
-    const { isOpen, onClose, type, data } = useModal();
+    const {onOpen, isOpen, onClose, type, data } = useModal();
     const isModalOpen = isOpen && type === "invite";
     const { server } = data;
     console.log(server)
@@ -37,6 +38,19 @@ const InviteModal = () => {
         }, 1000);
     };
 
+    const onNew = async () => {
+        try {
+                setIsLoading(true);
+                const response = await axios.patch(`/api/servers/${server?.id}/invite-code`);
+        
+                onOpen("invite", { server: response.data });
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setIsLoading(false);
+            }
+    }
+
     return ( 
         <Dialog open={isModalOpen} onOpenChange={onClose}>
             <DialogContent className="bg-white text-black p-0 overflow-hidden" >
@@ -55,9 +69,9 @@ const InviteModal = () => {
                         <Input
                             className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
                             value={inviteUrl}
-                            
+                            disabled={isLoading}
                         />
-                        <Button size="icon" onClick={onCopy}>
+                        <Button size="icon" onClick={onCopy} disabled={isLoading}>
                             {copied 
                                 ? <Check className="w-4 h-4" /> 
                                 : <Copy className="w-4 h-4" />
@@ -65,6 +79,8 @@ const InviteModal = () => {
                         </Button>
                     </div>
                     <Button
+                        onClick={onNew}
+                        disabled={isLoading}
                         variant="link"
                         size="sm"
                         className="text-xs text-zinc-500 mt-4"
