@@ -13,6 +13,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Check, Copy, RefreshCw } from "lucide-react";
 import { useOrigin } from "@/hooks/use-origin";
+import { useState } from "react";
 
 const InviteModal = () => {
     const { isOpen, onClose, type, data } = useModal();
@@ -23,6 +24,18 @@ const InviteModal = () => {
     const origin = useOrigin();
     const inviteUrl = `${origin}/invite/${server?.inviteCode}`;
     console.log(inviteUrl)
+
+    const [copied, setCopied] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const onCopy = () => {
+        navigator.clipboard.writeText(inviteUrl);
+        setCopied(true);
+    
+        setTimeout(() => {
+            setCopied(false);
+        }, 1000);
+    };
 
     return ( 
         <Dialog open={isModalOpen} onOpenChange={onClose}>
@@ -44,9 +57,11 @@ const InviteModal = () => {
                             value={inviteUrl}
                             
                         />
-                        <Button size="icon">
-                            <Check className="w-4 h-4" /> 
-                            <Copy className="w-4 h-4" />
+                        <Button size="icon" onClick={onCopy}>
+                            {copied 
+                                ? <Check className="w-4 h-4" /> 
+                                : <Copy className="w-4 h-4" />
+                            }
                         </Button>
                     </div>
                     <Button
