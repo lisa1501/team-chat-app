@@ -12,10 +12,17 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Check, Copy, RefreshCw } from "lucide-react";
+import { useOrigin } from "@/hooks/use-origin";
 
 const InviteModal = () => {
-    const { isOpen, onClose, type } = useModal();
+    const { isOpen, onClose, type, data } = useModal();
     const isModalOpen = isOpen && type === "invite";
+    const { server } = data;
+    console.log(server)
+
+    const origin = useOrigin();
+    const inviteUrl = `${origin}/invite/${server?.inviteCode}`;
+    console.log(inviteUrl)
 
     return ( 
         <Dialog open={isModalOpen} onOpenChange={onClose}>
@@ -34,7 +41,8 @@ const InviteModal = () => {
                     <div className="flex items-center mt-2 gap-x-2">
                         <Input
                             className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
-                            value="invite-link"
+                            value={inviteUrl}
+                            
                         />
                         <Button size="icon">
                             <Check className="w-4 h-4" /> 
