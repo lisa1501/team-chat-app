@@ -12,9 +12,9 @@ import { useModal } from "@/hooks/use-modal-store";
 import { ServerWithMembersWithProfiles } from "@/types";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { UserAvatar } from "@/components/user-avatar";
-import { MoreVertical, ShieldAlert, ShieldCheck } from "lucide-react";
+import { MoreVertical, ShieldAlert, ShieldCheck, ShieldQuestion } from "lucide-react";
 import { useState } from "react";
-import { DropdownMenu, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 const roleIconMap = {
     "GUEST": null,
@@ -59,6 +59,14 @@ const MembersModal = () => {
                                         <DropdownMenuTrigger>
                                             <MoreVertical className="h-4 w-4 text-zinc-500" />
                                         </DropdownMenuTrigger>
+                                        <DropdownMenuContent side="left">
+                                            <DropdownMenuSub>
+                                                <DropdownMenuSubTrigger className="flex items-center">
+                                                    <ShieldQuestion className="w-4 h-4 mr-2" />
+                                                        <span>Role</span>
+                                                    </DropdownMenuSubTrigger>
+                                            </DropdownMenuSub>
+                                        </DropdownMenuContent>
                                     </DropdownMenu>
                                 </div>
                             )}
