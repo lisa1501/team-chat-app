@@ -12,7 +12,9 @@ import { useModal } from "@/hooks/use-modal-store";
 import { ServerWithMembersWithProfiles } from "@/types";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { UserAvatar } from "@/components/user-avatar";
-import { ShieldAlert, ShieldCheck } from "lucide-react";
+import { MoreVertical, ShieldAlert, ShieldCheck } from "lucide-react";
+import { useState } from "react";
+import { DropdownMenu, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 const roleIconMap = {
     "GUEST": null,
@@ -24,7 +26,7 @@ const MembersModal = () => {
     const {onOpen, isOpen, onClose, type, data } = useModal();
     const isModalOpen = isOpen && type === "members";
     const { server } = data as { server: ServerWithMembersWithProfiles };
-
+    const [loadingId, setLoadingId] = useState("");
     return ( 
         <Dialog open={isModalOpen} onOpenChange={onClose}>
             <DialogContent className="bg-white text-black p-0 overflow-hidden" >
@@ -51,6 +53,15 @@ const MembersModal = () => {
                                     {member.profile.email}
                                 </p>
                             </div>
+                            {server.profileId !== member.profileId && loadingId !== member.id && (
+                                <div className="ml-auto">
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger>
+                                            <MoreVertical className="h-4 w-4 text-zinc-500" />
+                                        </DropdownMenuTrigger>
+                                    </DropdownMenu>
+                                </div>
+                            )}
                         </div>
                     ))}
                 </ScrollArea>
