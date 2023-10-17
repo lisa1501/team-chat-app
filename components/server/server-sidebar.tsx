@@ -3,6 +3,8 @@ import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { ChannelType } from "@prisma/client";
 import { ServerHeader } from "./server-header";
+import { ScrollArea } from "../ui/scroll-area";
+import { ServerSearch } from "./server-search";
 
 interface ServerSidebarProps {
     serverId: string;
@@ -55,6 +57,12 @@ const ServerSidebar = async({
                 server={server}
                 role={role}
             />
+
+            <ScrollArea className="flex-1 px-3">
+                <div className="mt-2">
+                    <ServerSearch />
+                </div>
+            </ScrollArea>
         </div>
     );
 }
