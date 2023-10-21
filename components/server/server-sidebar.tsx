@@ -129,7 +129,12 @@ const ServerSidebar = async({
                         />
                         <div className="space-y-[2px]">
                             {textChannels.map((channel) => (
-                                <ServerChannel />
+                                <ServerChannel 
+                                    key={channel.id}
+                                    channel={channel}
+                                    role={role}
+                                    server={server}
+                                />
                             ))} 
                         </div>
 
