@@ -137,10 +137,51 @@ const ServerSidebar = async({
                                 />
                             ))} 
                         </div>
-
                     </div>
                 )}
 
+                {!!audioChannels?.length && (
+                    <div className="mb-2">
+                        <ServerSection 
+                            sectionType="channels"
+                            channelType={ChannelType.AUDIO}
+                            role={role}
+                            label="Voice Channels"
+                        />
+                        <div className="space-y-[2px]">
+                            {audioChannels.map((channel) => (
+                                <ServerChannel 
+                                    key={channel.id}
+                                    channel={channel}
+                                    role={role}
+                                    server={server}
+                                />
+                            ))} 
+                        </div>
+                    </div>
+                )}
+
+                {!!videoChannels?.length && (
+                    <div className="mb-2">
+                        <ServerSection 
+                            sectionType="channels"
+                            channelType={ChannelType.VIDEO}
+                            role={role}
+                            label="Video Channels"
+                        />
+                        <div className="space-y-[2px]">
+                            {videoChannels.map((channel) => (
+                                <ServerChannel 
+                                    key={channel.id}
+                                    channel={channel}
+                                    role={role}
+                                    server={server}
+                                />
+                            ))} 
+                        </div>
+                    </div>
+                )}
+                
             </ScrollArea>
         </div>
         
