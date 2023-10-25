@@ -1,7 +1,7 @@
 const ChannelIdPage = () => {
     return ( 
         <div>
-            Channeld ID Page!
+            Channel ID Page!
         </div>
     );
 }
