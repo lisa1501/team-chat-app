@@ -1,3 +1,17 @@
+### Prerequisites
+
+**Node version 18.x.x**
+
+### Cloning the repository
+
+```shell
+git clone https://github.com/lisa1501/Discord-Clone.git
+
+### Install packages
+
+```shell
+npm i
+```
 - Create a .env file in the current directory. It should contain the following information.
 ```bash
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_************
@@ -20,6 +34,22 @@
     UPLOADTHING_APP_ID=•••••••••••••••••
     
 ```
+### Setup Prisma
+
+Add MySQL Database (I used PlanetScale)
+
+```shell
+npx prisma generate
+npx prisma db push
+
+```
+
+### Start the app
+
+```shell
+npm run dev
+```
+
 ## 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
