@@ -6,6 +6,7 @@
 
 ```shell
 git clone https://github.com/lisa1501/Discord-Clone.git
+```
 
 ### Install packages
 
