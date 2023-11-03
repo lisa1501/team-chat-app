@@ -25,10 +25,10 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
 
 import { FileUpload } from "@/components/file-upload";
 import { useRouter } from "next/navigation";
+import { useModal } from "@/hooks/use-modal-store";
 
 const formSchema = z.object({
     name: z.string().min(1, {
@@ -40,14 +40,10 @@ const formSchema = z.object({
 });
 
 const MessageFileModal = () => {
-    const [isMounted, setIsMounted] = useState(false);
-
+    const { isOpen, onClose, type, data } = useModal();
     const router = useRouter();
+    const isModalOpen = isOpen && type === "messageFile";
 
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
-    
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues:{
@@ -55,6 +51,11 @@ const MessageFileModal = () => {
             imageUrl: "",
         }
     })
+
+    const handleClose = () => {
+        form.reset();
+        onClose();
+    }
 
     const isLoading = form.formState.isSubmitting;
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -69,12 +70,8 @@ const MessageFileModal = () => {
         }
     }
 
-    if (!isMounted) {
-        return null;
-    }
-
     return ( 
-        <Dialog open>
+        <Dialog open={isModalOpen} onOpenChange={handleClose}>
             <DialogContent className="bg-white text-black p-0 overflow-hidden" >
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl text-center font-bold">
