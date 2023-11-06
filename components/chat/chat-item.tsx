@@ -3,7 +3,7 @@
 import { Member, Profile } from "@prisma/client";
 import { UserAvatar } from "../user-avatar";
 import { ActionTooltip } from "@/components/action-tooltip";
-import { ShieldAlert, ShieldCheck } from "lucide-react";
+import { FileIcon, ShieldAlert, ShieldCheck } from "lucide-react";
 
 interface ChatItemProps {
     id: string;
@@ -38,6 +38,10 @@ export const ChatItem = ({
     socketUrl,
     socketQuery
 }: ChatItemProps)=>{
+    const fileType = fileUrl?.split(".").pop();
+
+    const isPDF = fileType === "pdf" && fileUrl;
+
     return (
         <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
             <div className="group flex gap-x-2 items-start w-full">
@@ -45,19 +49,35 @@ export const ChatItem = ({
                     <UserAvatar src={member.profile.imageUrl} />
                 </div>
                 <div className="flex flex-col w-full">
-                    <div className="flex items-center">
-                        <p className="font-semibold text-sm hover:underline cursor-pointer">
-                            {member.profile.name}
-                        </p>
-                        <ActionTooltip label={member.role}>
-                            {roleIconMap[member.role]}
-                        </ActionTooltip>
+                    <div className="flex items-center gap-x-2">
+                        <div className="flex items-center">
+                            <p className="font-semibold text-sm hover:underline cursor-pointer">
+                                {member.profile.name}
+                            </p>
+                            <ActionTooltip label={member.role}>
+                                {roleIconMap[member.role]}
+                            </ActionTooltip>
+                        </div>
+                        <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                            {timestamp}
+                        </span>
                     </div>
-                    <span className="text-xs text-zinc-500 dark:text-zinc-400">
-                        {timestamp}
-                    </span>
-                </div>
-                {content}
+                    
+                    {isPDF && (
+                        <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
+                            <FileIcon className="h-10 w-10 fill-indigo-200 stroke-indigo-400" />
+                            <a 
+                                href={fileUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="ml-2 text-sm text-indigo-500 dark:text-indigo-400 hover:underline"
+                            >
+                                PDF File
+                            </a>
+                        </div>
+                    )}
+                    
+                </div>    
             </div>
         </div>
     )
