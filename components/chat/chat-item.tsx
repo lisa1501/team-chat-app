@@ -57,6 +57,7 @@ export const ChatItem = ({
                         {timestamp}
                     </span>
                 </div>
+                {content}
             </div>
         </div>
     )
