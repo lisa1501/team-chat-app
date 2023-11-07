@@ -58,6 +58,18 @@ export const ChatItem = ({
 }: ChatItemProps)=>{
     const [isEditing, setIsEditing] = useState(false);
 
+    useEffect(() => {
+        const handleKeyDown = (event: any) => {
+            if (event.key === "Escape" || event.keyCode === 27) {
+                setIsEditing(false);
+            }
+        };
+    
+        window.addEventListener("keydown", handleKeyDown);
+    
+        return () => window.removeEventListener("keyDown", handleKeyDown);
+    }, []);
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
