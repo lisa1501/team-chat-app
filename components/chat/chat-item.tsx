@@ -1,9 +1,9 @@
 "use client";
 
-import { Member, Profile } from "@prisma/client";
+import { Member, MemberRole, Profile } from "@prisma/client";
 import { UserAvatar } from "../user-avatar";
 import { ActionTooltip } from "@/components/action-tooltip";
-import { FileIcon, ShieldAlert, ShieldCheck } from "lucide-react";
+import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -45,8 +45,13 @@ export const ChatItem = ({
     
     const fileType = fileUrl?.split(".").pop();
 
+    const isOwner = currentMember.id === member.id;
     const isPDF = fileType === "pdf" && fileUrl;
     const isImage = !isPDF && fileUrl;
+    const isAdmin = currentMember.role === MemberRole.ADMIN;
+    const isModerator = currentMember.role === MemberRole.MODERATOR;
+    const canDeleteMessage = !deleted && (isAdmin || isModerator || isOwner);
+    const canEditMessage = !deleted && isOwner && !fileUrl;
 
     return (
         <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
@@ -116,6 +121,24 @@ export const ChatItem = ({
                     
                 </div>    
             </div>
+            
+            {canDeleteMessage && (
+                <div className="hidden group-hover:flex items-center gap-x-2 absolute p-1 -top-2 right-5 bg-white dark:bg-zinc-800 border rounded-sm">
+                    {canEditMessage && (
+                        <ActionTooltip label="Edit">
+                            <Edit
+                                onClick={() => setIsEditing(true)}
+                                className="cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
+                            />
+                        </ActionTooltip>
+                    )}
+                    <ActionTooltip label="Delete">
+                        <Trash
+                            className="cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
+                        />
+                    </ActionTooltip>
+                </div>
+            )}
         </div>
     )
 }
