@@ -4,6 +4,7 @@ import { Member, Profile } from "@prisma/client";
 import { UserAvatar } from "../user-avatar";
 import { ActionTooltip } from "@/components/action-tooltip";
 import { FileIcon, ShieldAlert, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 
 interface ChatItemProps {
     id: string;
@@ -41,6 +42,7 @@ export const ChatItem = ({
     const fileType = fileUrl?.split(".").pop();
 
     const isPDF = fileType === "pdf" && fileUrl;
+    const isImage = !isPDF && fileUrl;
 
     return (
         <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
@@ -62,7 +64,7 @@ export const ChatItem = ({
                             {timestamp}
                         </span>
                     </div>
-                    
+
                     {isPDF && (
                         <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
                             <FileIcon className="h-10 w-10 fill-indigo-200 stroke-indigo-400" />
@@ -75,6 +77,22 @@ export const ChatItem = ({
                                 PDF File
                             </a>
                         </div>
+                    )}
+
+                    {isImage && (
+                        <a 
+                            href={fileUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="relative aspect-square rounded-md mt-2 overflow-hidden border flex items-center bg-secondary h-48 w-48"
+                        >
+                            <Image
+                                src={fileUrl}
+                                alt={content}
+                                fill
+                                className="object-cover"
+                            />
+                        </a>
                     )}
                     
                 </div>    
