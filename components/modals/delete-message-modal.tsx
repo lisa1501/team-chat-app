@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
 
 const DeleteMessageModal = () => {
     const {isOpen, onClose, type, data } = useModal();
-    const isModalOpen = isOpen && type === "deleteChannel";
+    const isModalOpen = isOpen && type === "deleteMessage";
     const { server, channel} = data;
     const router = useRouter();
 
@@ -50,10 +50,11 @@ const DeleteMessageModal = () => {
             <DialogContent className="bg-white text-black p-0 overflow-hidden" >
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl text-center font-bold">
-                        Delete Channel
+                        Delete Message
                     </DialogTitle>
                     <DialogDescription className="text-center text-zinc-500">
-                        <span className="text-indigo-500 font-semibold">#{channel?.name}</span> will be permanently deleted.
+                        Are you sure you want to do this? <br />
+                        The message will be permanently deleted.
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="bg-gray-100 px-6 py-4">
