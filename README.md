@@ -33,6 +33,10 @@ npm i
     DATABASE_URL='mysql://****************************************************************'
     UPLOADTHING_SECRET=sk_live_••••••••••••••••••••••••••••••••••••••••••
     UPLOADTHING_APP_ID=•••••••••••••••••
+
+    LIVEKIT_API_KEY=•••••••••••••••••
+    LIVEKIT_API_SECRET=••••••••••••••••••••••••••••••••••
+    NEXT_PUBLIC_LIVEKIT_URL=wss://•••••••-•••••••-•••••••.livekit.cloud
     
 ```
 ### Setup Prisma
