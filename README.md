@@ -1,5 +1,8 @@
 # Fullstack Discord Clone: Next.js 13, React, Socket.io, Prisma, Tailwind, MySQL 
+<br>
 
+[Click here to see it in action!](https://team-chat-app-production-59d7.up.railway.app/sign-in?redirect_url=https%3A%2F%2Fteam-chat-app-production-59d7.up.railway.app%2F)
+<br>
 Features:
 
 - Real-time messaging using Socket.io
