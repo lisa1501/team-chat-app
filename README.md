@@ -3,7 +3,7 @@
 
 [Click here to see it in action!](https://team-chat-app-production-59d7.up.railway.app/sign-in?redirect_url=https%3A%2F%2Fteam-chat-app-production-59d7.up.railway.app%2F)
 <br>
-![image](https://github.com/lisa1501/team-chat-app/blob/main/images/Screenshot%202024-02-11%20at%206.32.11%20PM.png)
+
 Features:
 
 - Real-time messaging using Socket.io
@@ -103,6 +103,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+![image](https://github.com/lisa1501/team-chat-app/blob/main/images/Screenshot%202024-02-11%20at%206.32.11%20PM.png)
+![image](https://github.com/lisa1501/team-chat-app/blob/main/images/Screenshot%202024-02-11%20at%206.46.11%20PM.png)
+![image](https://github.com/lisa1501/team-chat-app/blob/main/images/Screenshot%202024-02-11%20at%206.49.33%20PM.png)
 
 ## Learn More
 
