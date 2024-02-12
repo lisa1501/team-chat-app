@@ -3,6 +3,7 @@
 
 [Click here to see it in action!](https://team-chat-app-production-59d7.up.railway.app/sign-in?redirect_url=https%3A%2F%2Fteam-chat-app-production-59d7.up.railway.app%2F)
 <br>
+![image](https://github.com/lisa1501/team-chat-app/blob/main/images/Screenshot%202024-02-11%20at%206.32.11%20PM.png)
 Features:
 
 - Real-time messaging using Socket.io
